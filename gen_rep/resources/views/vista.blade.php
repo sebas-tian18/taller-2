@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang=”en”>
 <head>
@@ -11,7 +9,7 @@
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
                     <a class="navbar-brand" href="welcome.blade.php">Hardsoft</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -36,36 +34,38 @@
                     </div>
                 </div>
             </nav>
-            <div class="container my-5">
+<div class="container my-5">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-lg-10 col-xl-10 bg-darkgray">
-                <div class = "card-body">
-            
-            <table class="table table-dark table-striped">
-                <thead>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Cedula</th>
-                    <th>Direccion</th>
-                    <th>Sexo</th>
-                </thead>
-                <tbody>
-                    @foreach($datos as $per)
-                        <td>{{$per->id_persona}}</td>
-                        <td>{{$per->nombre}}</td>
-                        <td>{{$per->apellido}}</td>
-                        <td>{{$per->fecha_nac}}</td>
-                        <td>{{$per->cedula_ident}}</td>
-                        <td>{{$per->direccion}}</td>
-                        <td>{{$per->FK_id_sexo}}</td>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+            <div class = "card-body"> 
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Cedula</th>
+                        <th>Direccion</th>
+                        <th>Sexo</th>
+                    </thead>
+                    <tbody>
+                        @foreach($datos as $per)
+                            <tr>
+                            <td>{{$per->id_persona}}</td>
+                            <td>{{$per->nombre}}</td>
+                            <td>{{$per->apellido}}</td>
+                            <td>{{$per->fecha_nac}}</td>
+                            <td>{{$per->cedula_ident}}</td>
+                            <td>{{$per->direccion}}</td>
+                            <td>{{$per->FK_id_sexo}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
 
     </body>

@@ -43,8 +43,8 @@
                                 <h1 class="display-5 fw-bolder text-white mb-2">Bienvenidos a Hardsoft</h1>
                                 <p class="lead fw-normal text-white-50 mb-4">La herramienta de ayuda para la facilitación a la hora de crear sus reportes orientada a cualquier usuario.</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-success btn-lg px-4 me-sm-3" href="{{route('persona')}}">Generar tabla!</a>
-
+                                    <a class="btn btn-success btn-lg px-4 me-sm-3" href="{{route('vista')}}">Generar tabla!</a>
+                                    <li><a href="{{route('filtro')}}">Filtro</a></li>
                                 </div>
                             </div>
                         </div>

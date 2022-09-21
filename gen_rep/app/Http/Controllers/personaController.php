@@ -7,7 +7,12 @@ use App\Models\persona;
 class personaController extends Controller
 {
     public function index(){
-        $datos = persona::all();
-        return view('vista', compact('datos'));
+        $datos = DB::table('persona')->get();
+        return view('vista')->with('datos',$datos);
+        
+    }
+    public function filtro()
+    {
+        return view('prueba');
     }
 }
