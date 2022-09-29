@@ -46,6 +46,7 @@
                                     <a class="btn btn-success btn-lg px-4 me-sm-3" href="{{route('vista')}}">Generar tabla persona</a>
                                     <li><a href="{{route('filtro')}}">Filtro</a></li>
                                     <li><a href="{{route('prue')}}">Nombre y Cargos</a></li>
+                                    <li><a href="{{route('prueba')}}">Consulta dinamica</a></li>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-            
+
                     <!-- Call to action-->
                     <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
                         <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">

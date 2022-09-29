@@ -1,17 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Models\persona;
 use FFI;
 
 class personaController extends Controller
 {
-    public function index(){
-        
+    public function inde(){
+
         $datos = DB::table('persona')->get();
-        return view('vista')->with('datos',$datos);          
+        return view('vista')->with('datos',$datos);
+    }
+    public function index(Request $request){
+        $persona1 = $request->persona1;
+        $persona2 = $request->persona2;
+
+        $datos = DB::table('persona')
+            ->when($persona1,function($query,$persona1){
+                $query->select($persona1);
+            })
+            ->when($persona2,function($query,$persona2){
+                $query->addSelect($persona2);
+            })
+            ->get();
+            dd($datos);
+            //return view('mostrar')->with('datos',$datos);
     }
 
     public function prue(){
@@ -20,11 +35,6 @@ class personaController extends Controller
         ->select('persona.nombre', 'cargo.cargo_laboral')
         ->get();
         dd($dosTablas);
-        #$prueba = DB::table('persona')->where('nombre', 'Luisa')->value('nombre');
-        #$prueba2 = DB::table('cargo')->where('id_cargo', 2)->first();
-        #dd($prueba);
-        #dd($prueba2);
-        #return view('prue')->with('prueba',$prueba);    
     }
 
     public function filtro()
@@ -33,7 +43,7 @@ class personaController extends Controller
     }
 }
 /*$dato = DB::table('persona')->where('nombre', 'Pedro')->first();
-        dd($dato);*/ 
+        dd($dato);*/
 
 /*
 <?php
