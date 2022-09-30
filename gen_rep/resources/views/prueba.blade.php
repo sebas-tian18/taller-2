@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
     <form action="{{ route('mostrar') }}" method ='GET'>
         @csrf
@@ -34,4 +35,5 @@
             <button>Enviar</button>
     </form>
 </body>
+
 </html>

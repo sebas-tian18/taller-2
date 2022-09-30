@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\persona;
 use FFI;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\personaExport;
 
 class personaController extends Controller
 {
@@ -41,7 +44,23 @@ class personaController extends Controller
     {
         return view('prueba');
     }
+
+    public function exportExcel()
+    {
+     return Excel::download(new personaExport, 'persona-list.xlsx'); /*comando en consola para usar este metodo es
+                                                                       php artisan make:export personaExport --model=persona */ 
+                                                                       /*
+                                                                        es una libreria para poder usar excel
+                                                                        composer require maatwebsite/excel
+                                                                        */
+    }
+
 }
+
+
+
+
+
 /*$dato = DB::table('persona')->where('nombre', 'Pedro')->first();
         dd($dato);*/
 

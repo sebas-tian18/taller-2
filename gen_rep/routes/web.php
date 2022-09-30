@@ -17,3 +17,6 @@ route::view('/prueba','prueba')->name('prueba');
 Route::get('/mostrar',[personaController::class,'inde'])->name('mostrar');
 route::view('/prueba','prueba')->name('prueba');
 Route::get('/mostrar',[personaController::class,'index'])->name('mostrar');
+
+Route::get('excel','App\Http\Controllers\personaController@exportExcel')->name('excel');
+

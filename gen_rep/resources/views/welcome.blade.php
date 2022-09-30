@@ -47,6 +47,7 @@
                                     <li><a href="{{route('filtro')}}">Filtro</a></li>
                                     <li><a href="{{route('prue')}}">Nombre y Cargos</a></li>
                                     <li><a href="{{route('prueba')}}">Consulta dinamica</a></li>
+                                    <li><a href="{{route('excel')}}">Excel</a></li>
                                 </div>
                             </div>
                         </div>
