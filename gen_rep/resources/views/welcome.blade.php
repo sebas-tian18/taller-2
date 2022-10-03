@@ -44,10 +44,12 @@
                                 <p class="lead fw-normal text-white-50 mb-4">La herramienta de ayuda para la facilitación a la hora de crear sus reportes orientada a cualquier usuario.</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                     <a class="btn btn-success btn-lg px-4 me-sm-3" href="{{route('vista')}}">Generar tabla persona</a>
-                                    <li><a href="{{route('filtro')}}">Filtro</a></li>
-                                    <li><a href="{{route('prue')}}">Nombre y Cargos</a></li>
-                                    <li><a href="{{route('prueba')}}">Consulta dinamica</a></li>
-                                    <li><a href="{{route('excel')}}">Excel</a></li>
+                                    <li><a href="{{route('filtro')}}" class="btn btn-sm btn-primary" >Filtro</a></li>
+                                    <li><a href="{{route('prue')}}" class="btn btn-sm btn-primary" >Nombre y Cargos</a></li>
+                                    <li><a href="{{route('prueba')}}" class="btn btn-sm btn-primary" >Consulta dinamica</a></li>
+                                    <li><a href="{{route('excel')}}" class="btn btn-sm btn-primary" >Excel</a></li>
+                                    <li><a href="{{route('expopdf')}}" class="btn btn-sm btn-primary" >PDF</a></li>
+                                    <li><a href="{{route('json')}}" class="btn btn-sm btn-primary" >JSON</a></li>
                                 </div>
                             </div>
                         </div>
