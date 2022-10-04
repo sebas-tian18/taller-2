@@ -46,7 +46,7 @@
                                     <a class="btn btn-success btn-lg px-4 me-sm-3" href="{{route('vista')}}">Generar tabla persona</a>
                                     <li><a href="{{route('filtro')}}">Filtro</a></li>
                                     <li><a href="{{route('prue')}}">Nombre y Cargos</a></li>
-                                    <li><a href="{{route('prueba')}}">Consulta dinamica</a></li>
+                                    <li><a href="{{route('test')}}">Consulta dinamica</a></li>
                                     <li><a href="{{route('excel')}}">Excel</a></li>
                                 </div>
                             </div>

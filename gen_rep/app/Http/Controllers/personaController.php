@@ -31,6 +31,21 @@ class personaController extends Controller
             dd($datos);
             //return view('mostrar')->with('datos',$datos);
     }
+    public function tablas(){
+
+        $tabla = \DB::table('INFORMATION_SCHEMA.TABLES')
+        ->select('TABLE_NAME')
+        ->get();
+        return view("test")->with('tabla',$tabla);
+
+    }
+    public function seleccion(Request $request){
+        while($request != null){
+
+            print("ta bien");
+
+        }
+    }
 
     public function prue(){
         $dosTablas = DB:: table('persona')
