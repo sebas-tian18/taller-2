@@ -32,6 +32,34 @@ class personaController extends Controller
             dd($datos);
             //return view('mostrar')->with('datos',$datos);
     }
+    //Cargo
+    public function alga(){
+
+        $datos = DB::table('cargo')->get();
+        return view('cargo')->with('datos',$datos);
+    }
+    public function A(Request $request){
+        $cargo=$request->id_cargo;
+        $descripcion=$request->cargo_laboral;
+        $salario=$request->descripcion_cargo;
+        $id=$request->salario_mensual;
+
+        $datos = DB::table('cargo')
+        ->when($cargo,function($query,$cargo){
+            $query->select($cargo);
+        })
+        ->when($descripcion,function($query,$descripcion){
+            $query->addSelect($descripcion);
+        })
+        ->when($salario,function($query,$salario){
+            $query->addSelect($salario);
+        })
+        ->when($id,function($query,$id){
+            $query->addSelect($id);
+        })
+        ->get();
+        dd($datos);
+    }
 ////////////////////////////////////////////////////////////////////////////////
     public function tablas(){
 
@@ -83,6 +111,5 @@ class personaController extends Controller
         $data = ['personas'=>$categorias];
         return response()->json($data,200,[]);
     }
-
 }
 
