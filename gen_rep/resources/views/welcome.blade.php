@@ -50,6 +50,7 @@
                                     <li><a href="{{route('excel')}}" class="btn btn-sm btn-primary" >Excel</a></li>
                                     <li><a href="{{route('expopdf')}}" class="btn btn-sm btn-primary" >PDF</a></li>
                                     <li><a href="{{route('json')}}" class="btn btn-sm btn-primary" >JSON</a></li>
+                                    <li><a href="{{route('test')}}" class="btn btn-sm btn-primary" >Test</a></li>
                                 </div>
                             </div>
                         </div>

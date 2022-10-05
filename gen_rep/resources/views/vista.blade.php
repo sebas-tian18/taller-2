@@ -63,10 +63,21 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 
 </div>
-
+<form method="GET" action="{{route('check')}}">
+    @csrf
+    <input type="checkbox" name="id_persona[]" value="id_persona" id="id_persona">id</br>
+    <input type="checkbox" name="nombre[]" value="nombre" id="nombre">nombre</br>
+    <input type="checkbox" name="apellido[]" value="apellido" id="apellido">apellido</br>
+    <input type="checkbox" name="fecha_nac[]" value="fecha_nac" id="fecha_nac">fecha</br>
+    <input type="checkbox" name="cedula_ident[]" value="cedula_ident" id="cedula_ident">cedula_id</br>
+    <input type="checkbox" name="direccion[]" value="direccion" id="direccion">direccion</br>
+    <input type="checkbox" name="FK_id_sexo[]" value="FK_id_sexo" id="FK_id_sexo">Id_sexo</br>
+    <input type="submit">
+</form>
     </body>
 </html>

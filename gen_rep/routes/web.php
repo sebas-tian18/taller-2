@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\personaController;
+use App\Http\Requests\check;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,11 +19,21 @@ route::view('/prueba','prueba')->name('prueba');
 // Route::get('/mostrar',[personaController::class,'inde'])->name('mostrar');
 // route::view('/prueba','prueba')->name('prueba');
 
+Route::get('/mostrar',[personaController::class,'seleccion'])->name('mostrar');
 
-Route::get('/mostrar',[personaController::class,'index'])->name('mostrar');
+Route::get('/test',[personaController::class,'tablas'])->name('test');
+Route::get('/p2',[personaController::class,'seleccion'])->name('p2');
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-Route::get('/excel','App\Http\Controllers\personaController@exportExcel')->name('excel');
-Route::get('/pdf', [personaController::class,'exportPDF'])->name('expopdf');
-Route::get('/json','App\Http\Controllers\personaController@exportjson')->name('json');
-Route::get('/test',[personaController::class,'tablas'])->name('test');
+Route::get('/excel', [personaController::class,'exportPDF'])->name('expopdf');
+Route::get('/pdf', [personaController::class,'exportExcel'])->name('excel');
+Route::get('/json', [personaController::class,'exportJson'])->name('json');
+
+Route::get('/Txls',function(){return (new App\Exports\personaExport)->download('tablas.xls');});
+
+Route::get('/check',[personaController::class,'checkpersona'])->name('check');
+
+
+Route::post('form-post', function (check $request) {
+    dd(request()->all());
+});
