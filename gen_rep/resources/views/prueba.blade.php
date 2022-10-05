@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Consulta dinamica</title>
 </head>
 
 <body>
     <form action="{{ route('mostrar') }}" method ='GET'>
         @csrf
-            <label for="persona">Persona</label>
+            <label for="persona">Persona1</label>
             <select name="persona1" id="persona1">
                 <option value=""></option>
                 <option value='id_persona'>ID</option>
@@ -21,7 +21,7 @@
                 <option value="FK_id_sexo">Sexo</option>
             </select>
 
-            <label for="Persona2">Persona</label>
+            <label for="Persona2">Persona2</label>
             <select name="persona2" id="persona2">
                 <option value=""></option>
                 <option value="id_persona">ID</option>
