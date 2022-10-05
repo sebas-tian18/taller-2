@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\persona;
 use FFI;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 use App\Exports\personaExport;
 
@@ -59,15 +60,26 @@ class personaController extends Controller
     {
         return view('prueba');
     }
+//  FUNCIONES DE EXPORTACION
+////////////////////////////////////////////////////////////////////////////////////////////
 
     public function exportExcel()
     {
-     return Excel::download(new personaExport, 'persona-list.xlsx'); /*comando en consola para usar este metodo es
-                                                                       php artisan make:export personaExport --model=persona */ 
-                                                                       /*
-                                                                        es una libreria para poder usar excel
-                                                                        composer require maatwebsite/excel
-                                                                        */
+    return Excel::download(new personaExport, 'persona-list.xlsx');
+    /*comando en consola para usar este metodo es: php artisan make:export personaExport --model=persona
+    es una libreria para poder usar excel: composer require maatwebsite/excel*/
+    }
+    public function exportPDF(){
+        
+        $pdf = PDF::loadView('expo_p');
+        return $pdf->stream('expo_p.pdf');//download
+    }
+
+    public function exportjson()
+    {
+        $categorias = persona::all();
+        $data = ['personas'=>$categorias];
+        return response()->json($data,200,[]);
     }
 
 }
