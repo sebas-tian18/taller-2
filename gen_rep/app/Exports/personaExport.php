@@ -4,20 +4,23 @@ namespace App\Exports;
 
 use App\Models\persona;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Illuminate\Contracts\View\View;
 
-class personaExport implements FromCollection//, FromView
+class personaExport implements FromCollection, FromView
 // seguir con este codigo con sebastian lopez
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+    use Exportable;
+
     public function collection()
     {
         return persona::select("nombre")-> get();
     }
-    // public function view(){
-    //     return view('export.excel');
-    // }
+
+    public function view(): View
+    {
+        return view('exports.Txls',['datos'=>datos::get()]);
+    }
 }
 

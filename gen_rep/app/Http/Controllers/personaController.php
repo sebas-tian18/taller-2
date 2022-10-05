@@ -13,10 +13,10 @@ use App\Exports\personaExport;
 class personaController extends Controller
 {
     public function inde(){
-
         $datos = DB::table('persona')->get();
         return view('vista')->with('datos',$datos);
     }
+
     public function index(Request $request){
         $persona1 = $request->persona1;
         $persona2 = $request->persona2;
@@ -35,17 +35,22 @@ class personaController extends Controller
 ////////////////////////////////////////////////////////////////////////////////
     public function tablas(){
 
-        $tabla = \DB::table('INFORMATION_SCHEMA.TABLES')
+        $tabla = DB::table('INFORMATION_SCHEMA.TABLES')
         ->select('TABLE_NAME')
         ->get();
         return view("test")->with('tabla',$tabla);
 
     }
     public function seleccion(Request $request){
-        while($request != null){
+        $var = $request->Check;
+        $tamaño = sizeof($var);
+         //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
+        for ($i = 0;$i<$tamaño;$i++){
 
-            print("ta bien");
-
+            //$chk = DB::table($var(i))->get();
+            //return view("p2")->with('chk',$ckh);
+            $probar = $var($i)+",";
+            return $probar;
         }
     }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +77,7 @@ class personaController extends Controller
     es una libreria para poder usar excel: composer require maatwebsite/excel*/
     }
     public function exportPDF(){
-        
+
         $pdf = \PDF::loadView('expo_p');
         return $pdf->stream('expo_p.pdf');//download
     }
@@ -85,4 +90,3 @@ class personaController extends Controller
     }
 
 }
-

@@ -8,9 +8,9 @@
 </head>
 <body>
     <div id="Rellenar">
-        <form action="{{ route('p2') }}" method ='GET'>
-            @foreach ($tabla as $ta)
-                <label><input type="checkbox" name='Check[]' value='{{$ta->TABLE_NAME}}'>{{$ta->TABLE_NAME}}</label>
+        <form action="{{ route('mostar') }}" method ='GET'>
+            @foreach ($chk as $c)
+                <label><input type="checkbox" name='Check2[]' value='{{$c->Check}}'>{{$ta->Check}}</label>
             @endforeach
             <button>Comprobar</button>
         </form>

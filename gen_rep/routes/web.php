@@ -17,11 +17,14 @@ route::view('/prueba','prueba')->name('prueba');
 // Route::get('/mostrar',[personaController::class,'inde'])->name('mostrar');
 // route::view('/prueba','prueba')->name('prueba');
 
+Route::get('/mostrar',[personaController::class,'seleccion'])->name('mostrar');
 
-Route::get('/mostrar',[personaController::class,'index'])->name('mostrar');
+Route::get('/test',[personaController::class,'tablas'])->name('test');
+Route::get('/p2',[personaController::class,'seleccion'])->name('p2');
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/excel','App\Http\Controllers\personaController@exportExcel')->name('excel');
 Route::get('/pdf', [personaController::class,'exportPDF'])->name('expopdf');
 Route::get('/json','App\Http\Controllers\personaController@exportjson')->name('json');
-Route::get('/test',[personaController::class,'tablas'])->name('test');
+
+Route::get('/Txls',function(){return (new App\Exports\personaExport)->download('tablas.xls');});
