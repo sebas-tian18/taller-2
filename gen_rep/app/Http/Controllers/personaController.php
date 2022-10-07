@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 use App\Exports\personaExport;
+use Illuminate\Support\Arr;
 
 class personaController extends Controller
 {
@@ -32,6 +33,36 @@ class personaController extends Controller
             dd($datos);
             //return view('mostrar')->with('datos',$datos);
     }
+/////////////////////////////////////////////////////////////////////////////////////
+    //Cargo
+    public function alga(){
+
+        $datos = DB::table('cargo')->get();
+        return view('cargo')->with('datos',$datos);
+    }
+    public function A(Request $request){
+        $cargo=$request->id_cargo;
+        $descripcion=$request->cargo_laboral;
+        $salario=$request->descripcion_cargo;
+        $id=$request->salario_mensual;
+
+        $datos = DB::table('cargo')
+        ->when($cargo,function($query,$cargo){
+            $query->select($cargo);
+        })
+        ->when($descripcion,function($query,$descripcion){
+            $query->addSelect($descripcion);
+        })
+        ->when($salario,function($query,$salario){
+            $query->addSelect($salario);
+        })
+        ->when($id,function($query,$id){
+            $query->addSelect($id);
+        })
+        ->get();
+        dd($datos);
+    }
+
 ////////////////////////////////////////////////////////////////////////////////
     public function tablas(){
 
@@ -39,20 +70,39 @@ class personaController extends Controller
         ->select('TABLE_NAME')
         ->get();
         return view("test")->with('tabla',$tabla);
-
-    }
+    } 
     public function seleccion(Request $request){
-        $var = $request->Check;
-        $tamaño = sizeof($var);
-         //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
-        for ($i = 0;$i<$tamaño;$i++){
+        $var = $request->Check2;// pasar a arreglo de string 
+        //$tamaño = sizeof($var);
+        $arr = [];
+        $con = "TABLE_NAME = "; 
+//recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
+        for ($i = 0;$i<1;$i++){
+            $users = DB::table('INFORMATION_SCHEMA.COLUMNS')
+                    ->when($i, function ($query) use ($i) {
+                        return $query->where($i,$var);             
+                    })
+                    ->get();
 
-            //$chk = DB::table($var(i))->get();
-            //return view("p2")->with('chk',$ckh);
-            $probar = $var($i).",";
-            return $probar;
-        }
-    }
+            }
+            dd($users);
+            //return view("p2")->with('userseeeeeeeee',$users);
+    }  
+        // $var = $request->Check;// pasar a arreglo de string                 
+        // $tamaño = sizeof($var);
+        // $arr = [];
+        // $con = "TABLE_NAME = ";
+        //  //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
+        // for ($i = 0;$i<$tamaño;$i++){
+        //     $chk = DB::table('INFORMATION_SCHEMA.COLUMNS')
+        //     ->when($i,function($query,$i){
+        //         $query->Select($i)//cambiar funcion
+        //     ->get();
+        //     $arreglo = Arr::add($arr,$i,$chk);
+        
+        //     }
+        // return view("p2")->with('chk',$arr);
+    
 /////////////////////////////////////////////////////////////////////////////////////////
 //funcion de dos tablas
     public function prue(){
@@ -63,11 +113,6 @@ class personaController extends Controller
         dd($dosTablas);
     }
 
-    // public function filtro()
-    // {
-    //     return view('prueba');
-    // }
-//  FUNCIONES DE EXPORTACION
 ////////////////////////////////////////////////////////////////////////////////////////////
 
     public function exportExcel()
@@ -125,6 +170,46 @@ class personaController extends Controller
             ->get();
             dd($datosP);
     }
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//sebastian Muñoz
+        public function tab_per(){
 
+            $tab_per = DB::table('INFORMATION_SCHEMA.COLUMNS')
+            ->select('*')
+            ->where('COLUMN_NAME')
+            ->get();
+            return view("per_c")->with('co',$tab_per);
+    }   
+
+    public function seleccion2(Request $request){
+        $var = $request->Check;// pasar a arreglo de string 
+        $tamaño = sizeof($var);
+        $arr = [];
+        $con = "TABLE_NAME = ";
+        $t = "'";
+         //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
+         for ($i = 0;$i<$tamaño;$i++){
+            $texto = $con.$var[$i];
+            $chk = DB::table('INFORMATION_SCHEMA.COLUMNS')
+            ->where($texto)
+            ->get();
+            $arreglo = Arr::add($arr,$i,$chk);
+        }
+        return view("p2")->with('chk',$arr);
+    }
+
+    // public function persoColum(Request $request){
+    //     $var = $request->Check;
+    //     $tamaño = sizeof($var);
+    //     $arr = [];
+    //     //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
+    //     for ($i = 0;$i<$tamaño;$i++){
+    //         $chk = DB::table('INFORMATION_SCHEMA.COLUMNS')
+    //         ->select($var($i))//selecciona las columnas
+    //         ->get();
+    //         $arreglo = Arr::add($arr,$i,$chk);
+    //     }
+    //     return view('p2')->with('chk',$arr);
+    // }
 
 }
