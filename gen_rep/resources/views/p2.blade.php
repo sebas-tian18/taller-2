@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="Rellenar">
-        <form action="{{ route('mostar') }}" method ='GET'>
+        <form action="{{ route('mostrar') }}" method ='GET'>
             @foreach ($chk as $c)
                 <label><input type="checkbox" name='Check2[]' value='{{$c->Check}}'>{{$ta->Check}}</label>
             @endforeach

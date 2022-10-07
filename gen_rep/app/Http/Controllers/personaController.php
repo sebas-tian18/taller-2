@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\persona;
+use Illuminate\Support\Arr;
 use FFI;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
@@ -42,16 +43,20 @@ class personaController extends Controller
 
     }
     public function seleccion(Request $request){
-        $var = $request->Check;
+        $var = $request->Check;// pasar a arreglo de string 
         $tamaño = sizeof($var);
+        $arr = [];
+        $con = "TABLE_NAME = ";
+        $t = "'";
          //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
-        for ($i = 0;$i<$tamaño;$i++){
-
-            //$chk = DB::table($var(i))->get();
-            //return view("p2")->with('chk',$ckh);
-            $probar = $var($i)+",";
-            return $probar;
+         for ($i = 0;$i<$tamaño;$i++){
+            $texto = $con.$var[$i];
+            $chk = DB::table('INFORMATION_SCHEMA.COLUMNS')
+            ->where($texto)
+            ->get();
+            $arreglo = Arr::add($arr,$i,$chk);
         }
+        return view("p2")->with('chk',$arr);
     }
 /////////////////////////////////////////////////////////////////////////////////////////
 //funcion de dos tablas
