@@ -10,6 +10,7 @@ use PDF;
 
 use App\Exports\personaExport;
 use Illuminate\Support\Arr;
+use PHPUnit\Framework\Constraint\Count;
 
 class personaController extends Controller
 {
@@ -72,21 +73,24 @@ class personaController extends Controller
         return view("test")->with('tabla',$tabla);
     } 
     public function seleccion(Request $request){
-        $var = $request->Check2;// pasar a arreglo de string 
-        //$tamaño = sizeof($var);
+        $var = $request->Check;// pasar a arreglo de string 
+        //$tamaño = Count($var);
         $arr = [];
-        $con = "TABLE_NAME = "; 
+        $n = 0;
+        $con = "TABLE_NAME"; 
 //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
-        for ($i = 0;$i<1;$i++){
+        for ($i = 0;$i<count($var);$i++){
             $users = DB::table('INFORMATION_SCHEMA.COLUMNS')
-                    ->when($i, function ($query) use ($i) {
-                        return $query->where($i,$var);             
-                    })
-                    ->get();
-
+                ->select('COLUMN_NAME')
+                ->where($con,$var[$i])
+                ->get();
+                
+                for ($a=0;$a< count($users);$a++){
+                    $arr = Arr::add($arr,$n++, [$var[$i],$users[$a]->COLUMN_NAME]);
+                }
             }
-            dd($users);
-            //return view("p2")->with('userseeeeeeeee',$users);
+        //dd($arr);
+        return view("p2")->with(compact('arr','var'));
     }  
         // $var = $request->Check;// pasar a arreglo de string                 
         // $tamaño = sizeof($var);
