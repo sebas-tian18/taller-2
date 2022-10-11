@@ -64,6 +64,7 @@ class personaController extends Controller
         dd($datos);
     }
 
+
 ////////////////////////////////////////////////////////////////////////////////
     public function tablas(){
 
@@ -72,6 +73,7 @@ class personaController extends Controller
         ->get();
         return view("test")->with('tabla',$tabla);
     } 
+
     public function seleccion(Request $request){
         $var = $request->Check;// pasar a arreglo de string 
         //$tamaño = Count($var);
@@ -92,21 +94,7 @@ class personaController extends Controller
         //dd($arr);
         return view("p2")->with(compact('arr','var'));
     }  
-        // $var = $request->Check;// pasar a arreglo de string                 
-        // $tamaño = sizeof($var);
-        // $arr = [];
-        // $con = "TABLE_NAME = ";
-        //  //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
-        // for ($i = 0;$i<$tamaño;$i++){
-        //     $chk = DB::table('INFORMATION_SCHEMA.COLUMNS')
-        //     ->when($i,function($query,$i){
-        //         $query->Select($i)//cambiar funcion
-        //     ->get();
-        //     $arreglo = Arr::add($arr,$i,$chk);
-        
-        //     }
-        // return view("p2")->with('chk',$arr);
-    
+
 /////////////////////////////////////////////////////////////////////////////////////////
 //funcion de dos tablas
     public function prue(){
@@ -139,81 +127,34 @@ class personaController extends Controller
     }
 /////////////////////////////////////////////////////////////////////////////////////////
 // check
-    public function checkpersona(Request $request)
-    {
-        $id_persona = $request->id_persona;
-        $nombre = $request->nombre;
-        $apellido = $request->apellido;
-        $fecha_nac = $request->fecha_nac;
-        $cedula_ident = $request->cedula_ident;
-        $direccion = $request->direccion;
-        $FK_id_sexo = $request->FK_id_sexo;
-
-        $datosP = DB::table('persona')
-            ->when($id_persona,function($query,$id_persona){
-                $query->select($id_persona);
-            })
-            ->when($nombre,function($query,$nombre){
-                $query->addSelect($nombre);
-            })
-            ->when($apellido,function($query,$apellido){
-                $query->addSelect($apellido);
-            })
-            ->when($fecha_nac,function($query,$fecha_nac){
-                $query->addSelect($fecha_nac);
-            })
-            ->when($cedula_ident,function($query,$cedula_ident){
-                $query->addSelect($cedula_ident);
-            })
-            ->when($direccion,function($query,$direccion){
-                $query->addSelect($direccion);
-            })
-            ->when($FK_id_sexo,function($query,$FK_id_sexo){
-                $query->addSelect($FK_id_sexo);
-            })
-            ->get();
-            dd($datosP);
-    }
+ 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //sebastian Muñoz
-        public function tab_per(){
+    //     public function tab_per(){
 
-            $tab_per = DB::table('INFORMATION_SCHEMA.COLUMNS')
-            ->select('*')
-            ->where('COLUMN_NAME')
-            ->get();
-            return view("per_c")->with('co',$tab_per);
-    }   
+    //         $tab_per = DB::table('INFORMATION_SCHEMA.COLUMNS')
+    //         ->select('*')
+    //         ->where('COLUMN_NAME')
+    //         ->get();
+    //         return view("per_c")->with('co',$tab_per);
+    // }   
 
-    public function seleccion2(Request $request){
-        $var = $request->Check;// pasar a arreglo de string 
-        $tamaño = sizeof($var);
-        $arr = [];
-        $con = "TABLE_NAME = ";
-        $t = "'";
-         //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
-         for ($i = 0;$i<$tamaño;$i++){
-            $texto = $con.$var[$i];
-            $chk = DB::table('INFORMATION_SCHEMA.COLUMNS')
-            ->where($texto)
-            ->get();
-            $arreglo = Arr::add($arr,$i,$chk);
-        }
-        return view("p2")->with('chk',$arr);
-    }
-
-    // public function persoColum(Request $request){
-    //     $var = $request->Check;
+    // public function seleccion2(Request $request){
+    //     $var = $request->Check;// pasar a arreglo de string 
     //     $tamaño = sizeof($var);
     //     $arr = [];
-    //     //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
-    //     for ($i = 0;$i<$tamaño;$i++){
+    //     $con = "TABLE_NAME = ";
+    //     $t = "'";
+    //      //recorrer el Check para ver los datos almacenados e ir creando la consulta correspondiente
+    //      for ($i = 0;$i<$tamaño;$i++){
+    //         $texto = $con.$var[$i];
     //         $chk = DB::table('INFORMATION_SCHEMA.COLUMNS')
-    //         ->select($var($i))//selecciona las columnas
+    //         ->where($texto)
     //         ->get();
     //         $arreglo = Arr::add($arr,$i,$chk);
     //     }
-    //     return view('p2')->with('chk',$arr);
+    //     return view("p2")->with('chk',$arr);
     // }
+
 
 }
